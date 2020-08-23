@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
+#include <time.h>
+#include <float.h>
 
 #include <arch/x86/TTY.h>
 
@@ -20,5 +23,5 @@ void kernel_early(void)
 void kernel_main(void) 
 {
 	kernel_early();
-	
+	printf("GlucOS\n");
 }

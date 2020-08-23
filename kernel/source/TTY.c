@@ -59,6 +59,6 @@ void TTY_write(size_t size, const char* data)
  
 void TTY_writestring(const char* data) 
 {
-	TTY_write(data, strlen(data));
+	TTY_write(strlen(data), data);
 }
  
