@@ -22,5 +22,13 @@ kernel/object/stdio.o  \
 kernel/object/TTY.o    \
 
 #test
-export PATH=$PATH:/mnt/d/Program\ Files/qemu
-qemu-system-x86_64.exe -kernel os.bin -monitor stdio
+if   [[ "$OSTYPE" == "linux-gnu"* ]]; then                    # 
+    if grep -1 Microsoft /proc/version; then                 #
+        export PATH=$PATH:/mnt/d/Program\ Files/qemu         # WSL
+        qemu-system-x86_64.exe -kernel os.bin -monitor stdio #
+    else                                                     #
+        qemu-system-x86_64 -kernel os.bin -monitor stdio     # Linux 
+    fi                                                       #
+elif [[ "$OSTYPE" == "darwin"* ]];  then                       #
+    qemu-system-x86_64 -kernel os.bin -monitor stdio         # MacOS
+fi                                                           #
