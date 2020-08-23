@@ -1,0 +1,4 @@
+*.bin
+*.ld
+kernel/object
+.vscode/
