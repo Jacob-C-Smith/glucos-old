@@ -10,6 +10,8 @@
 #include <arch/x86/VFS.h>
 #include <arch/x86/TTY.h>
 
+typedef struct sFILE FILE;
+
 struct fpos_s
 {
 

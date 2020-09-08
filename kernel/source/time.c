@@ -1,7 +1,10 @@
 #include <time.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+#include <arch/x86/MSR.h>
 
 const char* months[12] = {
     "Jan",
@@ -31,7 +34,10 @@ const char* days[7] = {
 char ASCIITime[24];
 char tBuffer[5];
 char* asctime (const struct tm* timeptr); //Day Mon Day HH:MM:SS YYYY
-clock_t clock (void);
+clock_t clock (void)
+{
+    return readTimestamp();
+}
 char* ctime (const time_t* timer);
 double difftime (time_t time1, time_t time2);
 struct tm* gmtime (const time_t* timer);

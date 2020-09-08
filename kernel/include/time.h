@@ -6,6 +6,7 @@
 
 typedef unsigned long long clock_t;
 typedef unsigned long long time_t;
+
 struct tm {
    int tm_sec;         // seconds,          range 0 to 59          
    int tm_min;         // minutes,          range 0 to 59           

@@ -165,7 +165,7 @@ void qsort (void *base, size_t nitems, size_t size, int (*compar)(const void *, 
 
 int abs (int x)
 {
-    return (x>0) ? x*-1 : x;
+    return (x<0) ? x*-1 : x;
 }
 
 div_t div (int numer, int denom)

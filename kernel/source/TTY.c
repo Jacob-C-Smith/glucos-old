@@ -57,6 +57,18 @@ void TTY_write(size_t size, const char* data)
 		TTY_putchar(data[i]);
 }
  
+void TTYF_write(size_t size, void* data)
+{
+	TTY_write(size, (char*)data);
+}
+
+void TTYE_write(size_t size, void* data)
+{
+	TTY_color = vga_entry_color(lightRed, black);
+	TTY_write(size, (char*)data);
+	TTY_color = vga_entry_color(white, black);
+}
+
 void TTY_writestring(const char* data) 
 {
 	TTY_write(strlen(data), data);

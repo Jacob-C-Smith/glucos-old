@@ -1,5 +1,5 @@
-#ifndef VGA_H
-#define VGA_H
+#ifndef X86_VGA_H
+#define X86_VGA_H
 
 #include <typedef.h>
 

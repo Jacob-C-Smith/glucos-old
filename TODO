@@ -5,4 +5,4 @@ VFS
 stdio
 stdlib
 time
-    - msr clock, maybe cmos?
+    - maybe cmos?

@@ -10,6 +10,8 @@ i686-elf-gcc -m32 -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I kernel/include/
 i686-elf-gcc -m32 -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I kernel/include/ -c kernel/source/stdlib.c -o kernel/object/stdlib.o 
 i686-elf-gcc -m32 -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I kernel/include/ -c kernel/source/stdio.c  -o kernel/object/stdio.o 
 i686-elf-gcc -m32 -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I kernel/include/ -c kernel/source/time.c   -o kernel/object/time.o 
+i686-elf-gcc -m32 -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I kernel/include/ -c kernel/source/CPUID.c  -o kernel/object/CPUID.o 
+i686-elf-gcc -m32 -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I kernel/include/ -c kernel/source/VFS.c    -o kernel/object/VFS.o 
 
 i686-elf-gcc -m32 -std=gnu99 -ffreestanding -O2 -Wall -Wextra -I kernel/include/ -c kernel/source/TTY.c    -o kernel/object/TTY.o    
 
@@ -21,6 +23,8 @@ kernel/object/string.o \
 kernel/object/stdlib.o \
 kernel/object/stdio.o  \
 kernel/object/time.o   \
+kernel/object/CPUID.o  \
+kernel/object/VFS.o    \
 kernel/object/TTY.o    \
 
 #test
