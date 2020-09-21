@@ -16,7 +16,7 @@ enum vga_color {
 	red          = 4,
 	magenta      = 5,
 	brown        = 6,
-	lightGrey   = 7,
+	lightGrey    = 7,
 	darkGrey     = 8,
 	lightBlue    = 9,
 	lightGreen   = 10,
@@ -29,12 +29,12 @@ enum vga_color {
 
 static inline u8 vga_entry_color(u8 fg,  u8 bg) 
 {
-	return fg | bg << 4;
+	return fg | bg << 4;                          // Bits 0-3 are foreground, bits 4-7 are background.
 }
  
 static inline u16 vga_entry(u8 uc, u8 color) 
 {
-	return (u16) uc | (u16) color << 8;
+	return (u16) uc | (u16) color << 8;           // Bits 0-7 are character, bits 8-15 are color attribute.
 }
  
 

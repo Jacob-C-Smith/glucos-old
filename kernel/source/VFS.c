@@ -36,6 +36,7 @@ void VFS_initialize()
     lzero->next       = lnull;
     lnull->next       = NULL;
 }
+
 FSNode_t* createFile(const char* name, u32 flags, u32 length,int (*read) (),void (*write) (size_t length, void* buffer),int (*open) (),int (*close) (), struct FSNode_s* contents, struct FSNode_s* next)
 {
     FSNode_t* ret = malloc(sizeof(FSNode_t));
@@ -91,4 +92,25 @@ FSNode_t* findFile(const char* path)
 
     free(pCopy);
     return NULL;
+}
+
+size_t open (const char* path, size_t oFlag, size_t oMode)
+{
+    FSNode_t* ret = findFile(path);
+    return (ret->open)();
+}
+
+size_t close (FSNode_t* fn)
+{
+    return (fn->close)();
+}
+
+size_t read (FSNode_t* fn, void* buf, size_t count)
+{
+    return (fn->read)(count,buf);
+}
+
+size_t write (FSNode_t* fn, const void* buf, size_t count)
+{
+    return (fn->write)(count,buf);
 }

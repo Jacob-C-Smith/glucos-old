@@ -1,3 +1,9 @@
+/*
+ * CPUID.h
+ * Written by Jacob Smith
+ * CPUID.h provides definitions, structs, and an initializer function to fill those structs.
+ */
+
 #ifndef CPUID_H
 #define CPUID_H 
 

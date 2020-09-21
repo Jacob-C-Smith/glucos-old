@@ -34,10 +34,4 @@ void kernel_main(void)
 {
 	kernel_early();
 	printf("GlucOS\n");
-
-	FSNode_t* lstdout = findFile("/dev/stdout");
-	(lstdout->write)(7,"stdout\n");
-	FSNode_t* lstderr = findFile("/dev/random");
-	int i = (lstderr->read)(7,"stderr\n");
-	printf("%i\n", i);
 }

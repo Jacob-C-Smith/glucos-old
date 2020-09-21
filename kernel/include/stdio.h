@@ -25,7 +25,7 @@ typedef struct fpos_s fpos_t;
 #define BUFSIZE 512
 #define EOF (-1) 
 
-#define FOPEN_MAX    3     // This is an admittedly arbitrary choice, and I can probably expand in the future. For now, this will make debugging easier and I don't really need to open many files at a time
+#define FOPEN_MAX    64    // This is an admittedly arbitrary choice, and I can probably expand in the future. For now, this will make debugging easier and I don't really need to open many files at a time
 #define FILENAME_MAX 16350 // Max for SFS
 #define TMP_MAX            
 
@@ -33,9 +33,9 @@ typedef struct fpos_s fpos_t;
 #define SEEK_CUR 1
 #define SEEK_END 2
 
-#define stdin
-#define stdout
-#define stderr
+#define stdin  0
+#define stdout 1
+#define stderr 2
 
 int      fclose   (FILE* stream);                                             // ❌ Closes the stream. All buffers are flushed.
 void     clearerr (FILE* stream);                                             // ❌ Clears the end-of-file and error indicators for the given stream.
