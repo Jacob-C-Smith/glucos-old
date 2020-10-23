@@ -5,7 +5,7 @@ size_t TTY_column;
 u8     TTY_color;
 u16*   TTY_buffer;
  
-void TTY_initialize(void) 
+void TTY_initialize( void ) 
 {
 	TTY_row    = 0;
 	TTY_column = 0;
@@ -19,18 +19,18 @@ void TTY_initialize(void)
 	}
 }
  
-void TTY_setcolor(u8 color) 
+void TTY_setcolor( u8 color ) 
 {
 	TTY_color = color;
 }
  
-void TTY_putentryat(char c, u8 color, size_t x, size_t y) 
+void TTY_putentryat( char c, u8 color, size_t x, size_t y ) 
 {
 	const size_t index = y * VGA_WIDTH + x;
 	TTY_buffer[index] = vga_entry(c, color);
 }
  
-void TTY_putchar(char c) 
+void TTY_putchar( char c ) 
 {
 	if(c == '\n')
     {
@@ -51,25 +51,25 @@ void TTY_putchar(char c)
 	}
 }
  
-void TTY_write(size_t size, const char* data) 
+void TTY_write( size_t size, const char* data ) 
 {
 	for (size_t i = 0; i < size; i++)
 		TTY_putchar(data[i]);
 }
  
-void TTYF_write(size_t size, void* data)
+void TTYF_write( size_t size, void* data )
 {
 	TTY_write(size, (char*)data);
 }
 
-void TTYE_write(size_t size, void* data)
+void TTYE_write( size_t size, void* data )
 {
 	TTY_color = vga_entry_color(lightRed, black);
 	TTY_write(size, (char*)data);
 	TTY_color = vga_entry_color(white, black);
 }
 
-void TTY_writestring(const char* data) 
+void TTY_writestring( const char* data ) 
 {
 	TTY_write(strlen(data), data);
 }

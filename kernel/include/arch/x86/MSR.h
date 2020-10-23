@@ -3,7 +3,7 @@
 
 #include <typedef.h>
 
-static inline u64 readTimestamp()
+static inline u64 readTimestamp( )
 {
     u64 ret;
     asm volatile ( "rdtsc" : "=A"(ret) );

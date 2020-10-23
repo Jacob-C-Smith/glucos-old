@@ -3,7 +3,7 @@
 
 #include <NULL.h>
 
-#define offsetof(structure, member) \
+#define offsetof( structure, member ) \
     ((size_t)((char *)&((structure *)0)->member - (char *)0))
 
 #endif

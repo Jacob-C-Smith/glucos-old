@@ -1,7 +1,7 @@
 #include <arch/x86/VFS.h>
 FSNode_t* fsRoot;
 
-void VFS_initialize()
+void VFS_initialize( )
 {
     /*
      * This is what the VFS looks like after the initialization function. In
@@ -37,7 +37,7 @@ void VFS_initialize()
     lnull->next       = NULL;
 }
 
-FSNode_t* createFile(const char* name, u32 flags, u32 length,int (*read) (),void (*write) (size_t length, void* buffer),int (*open) (),int (*close) (), struct FSNode_s* contents, struct FSNode_s* next)
+FSNode_t* createFile( const char* name, u32 flags, u32 length,int (*read) (),void (*write) (size_t length, void* buffer),int (*open) (),int (*close) (), struct FSNode_s* contents, struct FSNode_s* next )
 {
     FSNode_t* ret = malloc(sizeof(FSNode_t));
     
@@ -58,7 +58,7 @@ FSNode_t* createFile(const char* name, u32 flags, u32 length,int (*read) (),void
     return ret;
 }
 
-FSNode_t* findFile(const char* path)
+FSNode_t* findFile( const char* path )
 {
     FSNode_t* root = fsRoot;
 
@@ -94,23 +94,23 @@ FSNode_t* findFile(const char* path)
     return NULL;
 }
 
-size_t open (const char* path, size_t oFlag, size_t oMode)
+size_t open ( const char* path, size_t oFlag, size_t oMode )
 {
     FSNode_t* ret = findFile(path);
     return (ret->open)();
 }
 
-size_t close (FSNode_t* fn)
+size_t close ( FSNode_t* fn )
 {
     return (fn->close)();
 }
 
-size_t read (FSNode_t* fn, void* buf, size_t count)
+size_t read ( FSNode_t* fn, void* buf, size_t count )
 {
     return (fn->read)(count,buf);
 }
 
-size_t write (FSNode_t* fn, const void* buf, size_t count)
+size_t write ( FSNode_t* fn, void* buf, size_t count )
 {
     return (fn->write)(count,buf);
 }

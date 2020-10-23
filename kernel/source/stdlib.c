@@ -37,21 +37,21 @@ char itoan[16] = {
     'F'
 };
 
-double atof (const char* str); 
-int atoi (const char* str); 
-long int atol (const char* str); 
+double atof ( const char* str ); 
+int atoi ( const char* str ); 
+long int atol ( const char* str ); 
 
-double strtod (const char* str, char** endptr); 
-long int strtol (const char* str, char** endptr, int base); 
-unsigned long int strtoul (const char* str, char** endptr, int base);
+double strtod ( const char* str, char** endptr ); 
+long int strtol ( const char* str, char** endptr, int base ); 
+unsigned long int strtoul ( const char* str, char** endptr, int base );
 
-void* calloc (size_t nitems, size_t size)
+void* calloc ( size_t nitems, size_t size )
 {
     void* ret = malloc(nitems*size);
     memset(ret,0,nitems*size);
     return ret;
 }
-void free (void *ptr)
+void free ( void *ptr )
 {
     mallocBlock_t* mBase = (mallocBlock_t*) mallocBase;
     while(mBase)
@@ -65,7 +65,7 @@ void free (void *ptr)
     }
 }
 
-void* malloc (size_t size)
+void* malloc ( size_t size )
 {
     mallocBlock_t* mBase      = (mallocBlock_t*) mallocBase;
     static void*   memoryBase = (void*)          0x200000;
@@ -151,49 +151,49 @@ void* malloc (size_t size)
     //return OUTOFRAM!
 } 
 
-void* realloc (void *ptr, size_t size); 
+void* realloc ( void *ptr, size_t size ); 
 
-void abort (void); 
-int atexit (void (*func)(void)); 
-void exit (int status); 
+void abort ( void ); 
+int atexit ( void (*func)(void) ); 
+void exit ( int status ); 
 
-char* getenv (const char *name); 
-int system (const char *string); 
+char* getenv ( const char *name ); 
+int system ( const char *string ); 
 
-void* bsearch (const void *key, const void *base, size_t nitems, size_t size, int (*compar)(const void *, const void *)); 
-void qsort (void *base, size_t nitems, size_t size, int (*compar)(const void *, const void*)); 
+void* bsearch ( const void *key, const void *base, size_t nitems, size_t size, int (*compar)(const void *, const void *) ); 
+void qsort ( void *base, size_t nitems, size_t size, int (*compar)(const void *, const void*) ); 
 
-int abs (int x)
+int abs ( int x )
 {
     return (x<0) ? x*-1 : x;
 }
 
-div_t div (int numer, int denom)
+div_t div ( int numer, int denom )
 {
     return (div_t) {numer/denom,numer%denom};
 }
 
-long int labs (long int x)
+long int labs ( long int x)
 {
     return (x>0) ? x*-1 : x;
 } 
 
-ldiv_t ldiv (long int numer, long int denom)
+ldiv_t ldiv ( long int numer, long int denom )
 {
     return (ldiv_t) {numer/denom,numer%denom};
 }
 
-int rand (void)
+int rand ( void )
 {
     next = next * randSeed + 12345;
     return (unsigned) (next/2*RAND_MAX) % RAND_MAX+1;
 }
-void srand (unsigned int seed)
+void srand ( unsigned int seed )
 {
     randSeed = seed;
 }
 
-char* itoa (unsigned int i, char* buffer, int base)
+char* itoa ( unsigned int i, char* buffer, int base )
 {
     size_t j = 0;
     if(i == 0)

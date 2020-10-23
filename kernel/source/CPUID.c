@@ -10,7 +10,7 @@ extendedFeaturesEDX_t         extendedFeaturesEDX;
 const char manufacturerID[13]; //12+1
 const char brandstring[49];    //48+1
 
-void CPUID_initialize()
+void CPUID_initialize( )
 {
     asm volatile("cpuid":"=b"(*((u32*)manufacturerID)),"=c"(*((u32*)manufacturerID+2)),"=d"(*((u32*)manufacturerID+1)):"a"(MANUFACTURER_ID));
     asm volatile("cpuid":"=a"(processorVersionInformation),"=c"(featureInformationECX),"=d"(featureInformationEDX):"a"(PROCESSOR_INFO));

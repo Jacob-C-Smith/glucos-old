@@ -28,16 +28,16 @@
 // Space characters 
 // This is a set of tab, newline, vertical tab, form feed, carriage return, and space.
 
-int isalnum  (int c); //This function checks whether the passed character is alphanumeric.
-int isalpha  (int c); //This function checks whether the passed character is alphabetic.
-int iscntrl  (int c); //This function checks whether the passed character is control character.
-int isdigit  (int c); //This function checks whether the passed character is decimal digit.
-int isgraph  (int c); //This function checks whether the passed character has graphical representation using locale.
-int islower  (int c); //This function checks whether the passed character is lowercase letter.
-int isprint  (int c); //This function checks whether the passed character is printable.
-int ispunct  (int c); //This function checks whether the passed character is a punctuation character.
-int isspace  (int c); //This function checks whether the passed character is white-space.
-int isupper  (int c); //This function checks whether the passed character is an uppercase letter.
-int isxdigit (int c); //This function checks whether the passed character is a hexadecimal digit.
+int isalnum  ( int c ); //This function checks whether the passed character is alphanumeric.
+int isalpha  ( int c ); //This function checks whether the passed character is alphabetic.
+int iscntrl  ( int c ); //This function checks whether the passed character is control character.
+int isdigit  ( int c ); //This function checks whether the passed character is decimal digit.
+int isgraph  ( int c ); //This function checks whether the passed character has graphical representation using locale.
+int islower  ( int c ); //This function checks whether the passed character is lowercase letter.
+int isprint  ( int c ); //This function checks whether the passed character is printable.
+int ispunct  ( int c ); //This function checks whether the passed character is a punctuation character.
+int isspace  ( int c ); //This function checks whether the passed character is white-space.
+int isupper  ( int c ); //This function checks whether the passed character is an uppercase letter.
+int isxdigit ( int c ); //This function checks whether the passed character is a hexadecimal digit.
 
 #endif

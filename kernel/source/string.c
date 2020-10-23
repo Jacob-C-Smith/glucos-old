@@ -4,7 +4,7 @@ char* errorMessages [] = {
 	"Division by zero"
 };
 
-void* memchr (const void *str, int c, size_t n)
+void* memchr ( const void *str, int c, size_t n )
 {
 	unsigned char *p = (unsigned char*)str;
     while( n-- )
@@ -15,7 +15,7 @@ void* memchr (const void *str, int c, size_t n)
     return 0;
 }
 
-int memcmp (const void *str1, const void *str2, size_t n)
+int memcmp ( const void *str1, const void *str2, size_t n )
 {
     const unsigned char *p1 = str1, *p2 = str2;
     while(n--)
@@ -26,7 +26,7 @@ int memcmp (const void *str1, const void *str2, size_t n)
     return 0;
 }
 
-void* memcpy (void *dest, const void *src, size_t n)
+void* memcpy ( void *dest, const void *src, size_t n )
 {
     char *dp = dest;
     const char *sp = src;
@@ -35,12 +35,12 @@ void* memcpy (void *dest, const void *src, size_t n)
     return dest;
 }
 
-void* memmove (void *dest, const void *src, size_t n)
+void* memmove ( void *dest, const void *src, size_t n )
 {
     return memcpy(dest,src,n);
 }
 
-void* memset (void *str, int c, size_t n)
+void* memset ( void *str, int c, size_t n )
 {
     unsigned char* p=str;
     while(n--)
@@ -48,18 +48,18 @@ void* memset (void *str, int c, size_t n)
     return str;
 }
 
-char* strcat (char *dest, const char *src)
+char* strcat ( char *dest, const char *src )
 {
 	return strncat(dest,src,strlen(src));
 }
 
-char* strncat (char *dest, const char *src, size_t n)
+char* strncat ( char *dest, const char *src, size_t n )
 {
 	strncpy(&dest[strlen(dest)],src,n);
 	return dest;
 }
 
-char* strchr (const char *str, int c)
+char* strchr ( const char *str, int c )
 {
 	for (; *str != '\0'; ++str)
 		if (*str == c)
@@ -67,7 +67,7 @@ char* strchr (const char *str, int c)
 	return NULL;
 }
 
-int strcmp (const char *str1, const char *str2)
+int strcmp ( const char *str1, const char *str2 )
 {
 	size_t len1 = strlen(str1);
 	size_t len2 = strlen(str2);
@@ -75,7 +75,7 @@ int strcmp (const char *str1, const char *str2)
 	return strncmp(str1,str2,ret);
 }
 
-int strncmp (const char *str1, const char *str2, size_t n)
+int strncmp ( const char *str1, const char *str2, size_t n )
 {
 	for (size_t i = 0; i < n; i++)
 		if(str1[i] ^ str2[i])
@@ -83,20 +83,20 @@ int strncmp (const char *str1, const char *str2, size_t n)
 	return 0;
 }
 
-int strcoll (const char *str1, const char *str2); 
+int strcoll ( const char *str1, const char *str2 ); 
 
 char* strcpy (char *dest, const char *src)
 {
 	return strncpy(dest,src,strlen(src));
 }
-char* strncpy (char *dest, const char *src, size_t n)
+char* strncpy ( char *dest, const char *src, size_t n )
 {
 	for (size_t i = 0; i < n; i++)
 		dest[i] = src[i];
 	return dest;
 }
 
-size_t strcspn (const char *str1, const char *str2)
+size_t strcspn ( const char *str1, const char *str2 )
 {
     size_t ret=0;
     while(*str1)
@@ -109,12 +109,12 @@ size_t strcspn (const char *str1, const char *str2)
 	return ret;
 };
 
-char* strerror (int errnum)
+char* strerror ( int errnum )
 {
 	return errorMessages[errnum];
 }
 
-size_t strlen (const char* str) 
+size_t strlen ( const char* str ) 
 {
 	size_t len = 0;
 	while (str[len])
@@ -122,7 +122,7 @@ size_t strlen (const char* str)
 	return len;
 }
 
-char* strpbrk (const char *str1, const char *str2)
+char* strpbrk ( const char *str1, const char *str2 )
 {
 	while(*str1)
         if(strchr(str2, *str1++))
@@ -130,7 +130,7 @@ char* strpbrk (const char *str1, const char *str2)
     return 0;
 }
 
-char* strrchr (const char *str, int c)
+char* strrchr ( const char *str, int c )
 {
     char* ret=0;
     do {
@@ -140,7 +140,7 @@ char* strrchr (const char *str, int c)
     return ret;
 }
 
-size_t strspn (const char *str1, const char *str2)
+size_t strspn ( const char *str1, const char *str2 )
 {
 	size_t ret=0;
     while(*str1 && strchr(str2,*str1++))
@@ -148,7 +148,7 @@ size_t strspn (const char *str1, const char *str2)
     return ret;   
 }
 
-char* strstr (const char *haystack, const char *needle)
+char* strstr ( const char *haystack, const char *needle )
 {
 	size_t n = strlen(needle);
     while(*haystack)
@@ -157,7 +157,7 @@ char* strstr (const char *haystack, const char *needle)
     return 0;
 }
 
-char* strtok (char *str, const char *delim)
+char* strtok ( char *str, const char *delim )
 {
 	static char* p=0;
     if(str)
@@ -172,9 +172,9 @@ char* strtok (char *str, const char *delim)
     return str;
 }
 
-size_t strxfrm (char *dest, const char *src, size_t n); 
+size_t strxfrm ( char *dest, const char *src, size_t n ); 
 
-char* strrev(char* str)
+char* strrev( char* str )
 {
     int a, b;
     char c;

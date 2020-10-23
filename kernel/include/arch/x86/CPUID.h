@@ -4,8 +4,8 @@
  * CPUID.h provides definitions, structs, and an initializer function to fill those structs.
  */
 
-#ifndef CPUID_H
-#define CPUID_H 
+#ifndef X86_CPUID_H
+#define X86_CPUID_H 
 
 #include <typedef.h>
 
@@ -226,6 +226,6 @@ extern extendedFeaturesEDX_t         extendedFeaturesEDX;
 extern const char manufacturerID[13];
 extern const char brandstring[49];
 
-void CPUID_initialize();
+void CPUID_initialize ( );
 
 #endif

@@ -3,3 +3,5 @@
 *.dis
 kernel/object
 .vscode/
+window.schematic
+isodir\os.bin

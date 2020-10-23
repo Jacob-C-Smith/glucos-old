@@ -35,10 +35,10 @@ struct FSNode_s
     char   name[128];
     u32    flags;
     u32    length;
-    int    (*read)  (size_t length, void* buffer);
-    void   (*write) (size_t length, void* buffer);
-    int    (*open)  ();
-    int    (*close) ();
+    int    (*read)  ( size_t length, void* buffer );
+    size_t (*write) ( size_t length, void* buffer );
+    int    (*open)  ( );
+    int    (*close) ( );
     struct FSNode_s* contents;
     struct FSNode_s* next;
 };
@@ -59,18 +59,18 @@ extern FSNode_t* fsRoot;
 void      VFS_initialize();                                                // Creates the /dev directory and populates it with
                                                                            // stdout, stderr, stdin, random, zero, and null
 
-FSNode_t* createFile    (const char* name, u32 flags,                      // Allocates for and creates a file
+FSNode_t* createFile    ( const char* name, u32 flags,                      // Allocates for and creates a file
                          u32 length, int (*read) (),                       // with specified attributes    
                          void (*write) (size_t length, void* buffer),    
                          int (*open) (), int (*close) (),              
-                         struct FSNode_s* contents, struct FSNode_s* next);
+                         struct FSNode_s* contents, struct FSNode_s* next );
 
-FSNode_t* findFile      (const char* path);                                // Searches the VFS for a file
+FSNode_t* findFile      ( const char* path );                                // Searches the VFS for a file
 
-size_t    open          (const char* path, size_t oFlag, size_t oMode);
-size_t    close         (FSNode_t* fn);
-size_t    read          (FSNode_t* fn, void* buf, size_t count);
-size_t    write         (FSNode_t* fn, const void* buf, size_t nBytes);
+size_t    open          ( const char* path, size_t oFlag, size_t oMode );
+size_t    close         ( FSNode_t* fn );
+size_t    read          ( FSNode_t* fn, void* buf, size_t count );
+size_t    write         ( FSNode_t* fn, void* buf, size_t nBytes );
 
 
 #endif
