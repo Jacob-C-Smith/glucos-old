@@ -4,7 +4,7 @@ u32 VBERow    = 0;
 u32 VBEColumn = 0;
 u32 VBEColor  = 0;
 
-u64 font[129] = {
+u64 font[130] = {
 	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,
 	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,
 	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,	0x0000000000000000,
@@ -22,7 +22,7 @@ u64 font[129] = {
 	0x00003B66663E060F,	0x00006E33333E3078,	0x00003B6E66060F00,	0x00003E031E301F00,	0x080C3E0C0C2C1800,	0x0000333333336E00,	0x00003333331E0C00,	0x0000636B7F7F3600,
 	0x000063361C366300,	0x00003333333E301F,	0x00003F190C263F00,	0x380C0C070C0C3800,	0x1818180018181800,	0x070C0C380C0C0700,	0x6E3B000000000000,	0x0000000000000000,
 	// GlucOS UI specific
-	0x081C1E3770E0C080
+	0x80C0E070371E1C08, 0x003C7E7E7E7E3C00
 };
 VBEScreen_t* activeScreen = 0;
 
@@ -47,7 +47,7 @@ inline void VBE_putPixel ( u32 color, size_t x, size_t y )
 }
 void VBE_putcharat( char c, size_t x, size_t y, u32 color )
 {
-    u64 bmc = font[(size_t)c];
+    u64 bmc = font[(unsigned char)c];
 	for(u32 h = (x+8); h>x;h--)
 	{
 		for(u32 w = y; w<(8+y);w++)
@@ -85,6 +85,15 @@ void VBE_write ( size_t size, const char* data )
     for(size_t i = 0; i < size;i++)
         VBE_putchar(data[i]);
 }
+
+void VBE_writestringat ( const char* data, size_t x, size_t y )
+{
+	for (size_t i = 0; i < strlen(data); i++)
+	{
+		VBE_putcharat(data[i],y,x+(i*8),VBEColor);
+	}
+}
+
 void VBE_writestring ( const char* data )
 {
     VBE_write(strlen(data), data);
@@ -98,25 +107,29 @@ void VBE_drawRect( u32 x, u32 y, u32 w, u32 h, u32 c )
 		
 }
 
-void VBE_drawLine ( u32 x1, u32 y1, u32 x2, u32 y2, u32 c )
+void VBE_drawLine ( u32 x0, u32 y0, u32 x1, u32 y1, u32 c )
 {
-	u32 dx = abs((x2-x1));
-	u32 dy = abs((y2-y1));
-	u32 m = dy/dx;
-
-	if(dx == 0)
-		for(size_t y = y1; y <= y2; y++)
-			VBE_putPixel(c,x1,y);
-	if(dy == 0)
-		for (size_t x = x1; x <= x2; x++)
-			VBE_putPixel(c,x,y1);
-		
-	if(dx<dy)
-		for (size_t x = x1; x < (x2-x1); x++)
+	s32 dx = abs(x1-x0);
+	s32 sx = x0<x1 ? 1 : -1;
+	s32 dy = -abs(y1-y0);
+	s32 sy = y0<y1 ? 1 : -1;
+	s32 err = dx+dy;
+	while(1)
+	{
+		VBE_putPixel(c,x0,y0);
+		if(x0 == x1 && y0 == y1) break;
+		s32 e2 = 2*err;
+		if(e2>=dy)
 		{
-			VBE_putPixel(c,x,m*(x-x1)+y1);
+			err += dy;
+			x0 += sx;
 		}
-	
+		if(e2 <= dx)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
 }
 
 void VBE_drawHollowRect( u32 x, u32 y, u32 w, u32 h, u32 c )

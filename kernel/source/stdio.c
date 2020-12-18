@@ -82,7 +82,7 @@ int printf(const char* restrict format, ...) {
             VBE_putchar(*format);
         format++;
 	}
- 
+
 	va_end(parameters);
 	return 1;
 }

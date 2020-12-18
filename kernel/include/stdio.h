@@ -2,8 +2,8 @@
 #define STDIO_H
 
 #include <typedef.h>
-#include <NULL.h>
 #include <stdarg.h>
+#include <NULL.h>
 #include <limits.h>
 #include <stdlib.h>
 
